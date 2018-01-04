@@ -10,11 +10,11 @@ class VLocation(val x: Double, val y: Double, val z: Double, val world: Abstract
 
 abstract class VMap(
         val name: String,
-        val worldName: String,
+        internal val worldName: String,
         val authors: List<String>,
         val spawns: Map<VTeam, VLocation>) {
 
-    // Weird bug with accessing the setter from Java
+    // Weird bug with accessing the fields from Java
     internal var isLoaded: Boolean = false
 
     fun setLoaded(isLoaded: Boolean) {
@@ -22,6 +22,8 @@ abstract class VMap(
     }
 
     fun isLoaded(): Boolean = isLoaded
+
+    fun getWorldName(): String = worldName
 
     abstract fun loadWorld()
     abstract fun unloadWorld()
