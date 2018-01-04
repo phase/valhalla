@@ -1,0 +1,25 @@
+plugins {
+    id 'org.spongepowered.plugin' version '0.8.1'
+}
+
+apply plugin: 'com.github.johnrengelman.shadow'
+
+dependencies {
+    shadow project(':valhalla-common')
+    compile 'org.spongepowered:spongeapi:7.0.0-SNAPSHOT'
+}
+
+configurations {
+    compile.extendsFrom shadow
+}
+
+sponge.plugin.id = pluginId
+
+shadowJar {
+    configurations = [project.configurations.shadow]
+    classifier = null
+    relocate('kotlin', 'io.jadon.valhalla.runtime.kotlin')
+}
+
+build.dependsOn shadowJar
+jar.enabled = false

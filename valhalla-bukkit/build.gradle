@@ -1,0 +1,30 @@
+repositories {
+    maven {
+        name = 'spigotmc-repo'
+        url = 'https://hub.spigotmc.org/nexus/content/groups/public/'
+    }
+}
+
+dependencies {
+    shadow project(':valhalla-common')
+    compile 'org.bukkit:bukkit:1.12.2-R0.1-SNAPSHOT'
+}
+
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        expand 'version': project.version
+    }
+}
+
+configurations {
+    compile.extendsFrom shadow
+}
+
+shadowJar {
+    configurations = [project.configurations.shadow]
+    classifier = null
+    relocate('kotlin', 'io.jadon.valhalla.runtime.kotlin')
+}
+
+build.dependsOn shadowJar
+jar.enabled = false

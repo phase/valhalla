@@ -1,0 +1,3 @@
+rootProject.name = 'valhalla'
+
+include 'valhalla-common', 'valhalla-bukkit', 'valhalla-sponge'

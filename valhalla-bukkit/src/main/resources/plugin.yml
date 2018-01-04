@@ -1,0 +1,7 @@
+name: Valhalla
+version: @version@
+main: io.jadon.valhalla.bukki.ValhallaBukkit
+load: STARTUP
+authors: [phase]
+description: Valhalla Game API
+website: https://jadon.io/
